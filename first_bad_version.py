@@ -1,4 +1,4 @@
-BAD_VERSION = 4
+BAD_VERSION = 2
 
 def isBadVersion(version: int) -> bool:
     return version >= BAD_VERSION
@@ -6,18 +6,19 @@ def isBadVersion(version: int) -> bool:
 
 class Solution:
     def firstBadVersion(self, n: int) -> int:
-        first_v = 1
-        last_v = n
+        start = 1
+        end = n
+        mid = 0
 
-        while first_v < last_v:
-            mid = first_v + (last_v - first_v) // 2
+        while start < end:
+            mid = (start + end) // 2
             if isBadVersion(mid):
-                last_v = mid
+                end = mid
             else:
-                first_v = mid + 1
-        return first_v
+                start = mid + 1
+        return start
 
 
 
-solution = Solution().firstBadVersion(6)
+solution = Solution().firstBadVersion(3)
 print(solution)
