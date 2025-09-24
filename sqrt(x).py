@@ -2,15 +2,18 @@ class Solution:
     def mySqrt(self, x: int) -> int:
         if x == 0:
             return 0
-        first, last = 1, x
-        while first <= last:
-            mid = (first + last) // 2
+        mid = 0
+        y = 1
+        target = x
+        while y <= target:
+            mid = (y+target) // 2
             if mid == x // mid:
                 return mid
-            elif mid > x // mid:
-                last = mid - 1
+            elif mid < x // mid:
+                y = mid + 1
             else:
-                first = mid + 1
-        return last
+                target = mid - 1
+        return target
+
 
 print(Solution().mySqrt(8))
