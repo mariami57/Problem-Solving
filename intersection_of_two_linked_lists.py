@@ -28,32 +28,43 @@ class ListNode:
 #         return prev
 
 
+# class Solution:
+#     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+#
+#         def find_length(cur):
+#             length = 0
+#             while cur:
+#                 length += 1
+#                 cur = cur.next
+#             return length
+#
+#         length1 = find_length(headA)
+#         length2 = find_length(headB)
+#
+#         while length1 > length2:
+#             headA = headA.next
+#             length1 -=1
+#         while length1 < length2:
+#             headB = headB.next
+#             length2 -=1
+#
+#         while headA != headB:
+#             headA = headA.next
+#             headB = headB.next
+#         return headA
+
+
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        if not headA or not headB:
+            return None
 
-        def find_length(cur):
-            length = 0
-            while cur:
-                length += 1
-                cur = cur.next
-            return length
+        a,b = headA, headB
 
-        length1 = find_length(headA)
-        length2 = find_length(headB)
-
-        while length1 > length2:
-            headA = headA.next
-            length1 -=1
-        while length1 < length2:
-            headB = headB.next
-            length2 -=1
-
-        while headA != headB:
-            headA = headA.next
-            headB = headB.next
-        return headA
-
-
+        while a != b:
+            a = a.next if a else headB
+            b = b.next if b else headA
+        return a
 
 
 
