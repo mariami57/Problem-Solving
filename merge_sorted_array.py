@@ -6,23 +6,22 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
+
         midx = m - 1
         nidx = n - 1
-        right = m + n - 1
+        right = (m + n) - 1
 
         while nidx >= 0:
-            if midx >= 0 and  nums1[midx] > nums2[nidx]:
+            if midx >= 0 and nums1[midx] > nums2[nidx]:
                 nums1[right] = nums1[midx]
-                midx -= 1
+                midx -=1
             else:
                 nums1[right] = nums2[nidx]
-                nidx -= 1
-
+                nidx -=1
             right -=1
 
 
 
 
+print(Solution().merge(nums1 = [0], m = 0, nums2 = [1], n = 1))
 
-
-print(Solution().merge(nums1 = [2,0], m = 1, nums2 = [1], n = 1))
