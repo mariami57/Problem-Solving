@@ -12,7 +12,6 @@ class Solution:
             b = a - diff
             if b in bob_set:
                 return [a, b]
-        return []
 
 print(Solution().fairCandySwap(aliceSizes = [2], bobSizes = [1,3]))
 
