@@ -15,9 +15,8 @@ class Solution:
             head.next = node
             node = head
             head = temp
-
+            
         return node
-
 def build_linked_list(values):
     if not values:
         return None
