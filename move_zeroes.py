@@ -21,7 +21,5 @@ class Solution:
             if nums[idx] != 0:
                 nums[idx], nums[next_idx] = nums[next_idx], nums[idx]
                 next_idx += 1
-        return nums
-
-
+                
 print(Solution().moveZeroes([1,0,1]))
