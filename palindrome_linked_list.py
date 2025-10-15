@@ -1,4 +1,7 @@
 # Definition for singly-linked list.
+from Tools.scripts.generate_opcode_h import header
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -17,4 +20,11 @@ class Solution:
         return all(list_vals[i] == list_vals[~i] for i in range(len(list_vals) // 2))
 
 
+node = None
+while head:
+    temp = head.next
+    head.next = node
+    node = head
+    head = temp
 
+return node
