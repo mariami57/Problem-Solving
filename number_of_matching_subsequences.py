@@ -6,17 +6,16 @@ class Solution:
     def numMatchingSubseq(self, s: str, words: List[str]) -> int:
         cnt = 0
         def is_substring(str1, str2):
-            st, wp = 0, 0
+            s1, s2 = 0, 0
             count = 0
-            while st < len(str1) and wp < len(str2):
-                if str1[st] == str2[wp]:
-                    wp += 1
-                    st += 1
-                    count += 1
+            while s1 < len(str1) and s2 < len(str2):
+                if str1[s1] == str2[s2]:
+                    s2 += 1
+                    s1 += 1
                 else:
-                    wp += 1
+                    s2 += 1
 
-            return count == len(str1)
+            return s1 == len(str1)
 
         c = Counter(words)
         for w in set(words):
