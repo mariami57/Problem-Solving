@@ -3,11 +3,12 @@ from typing import List
 
 class Solution:
     def checkIfExist(self, arr: List[int]) -> bool:
-        for i in range(len(arr)):
-            if i >= 0:
-                for j in range(0, len(arr)):
-                    if arr[i] == 2 * arr[j] and i != j:
-                        return True
+        seen = set()
+        for num in arr:
+            double = num * 2
+            half = num // 2
+            if double in seen or (num % 2 == 0 and half in seen):
+                return True
+            seen.add(num)
         return False
-
-print(Solution().checkIfExist([3,1,7,11]))
+print(Solution().checkIfExist([7,1,14,11]))
