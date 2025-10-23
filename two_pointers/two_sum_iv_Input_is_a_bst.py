@@ -7,24 +7,52 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+# class Solution:
+#     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+#         values = set()
+#
+#         def preorder(node):
+#             if not node:
+#                 return False
+#
+#             if k - node.val in values:
+#                 return True
+#             values.add(node.val)
+#
+#             if preorder(node.right):
+#                 return True
+#
+#             if preorder(node.left):
+#                 return True
+#
+#             return False
+#
+#         return preorder(root)
+
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
-        values = set()
+        values = []
 
-        def preorder(node):
+        def inorder(node, values):
             if not node:
-                return False
+                return
+            inorder(node.left, values)
+            values.append(node.val)
+            inorder(node.right, values)
 
-            if k - node.val in values:
+        inorder(root, values)
+
+        left = 0
+        right = len(values) - 1
+
+        while left < right:
+            current_sum = values[left] + values[right]
+
+            if current_sum == k:
                 return True
-            values.add(node.val)
+            elif current_sum > k:
+                right -= 1
+            else:
+                left += 1
+        return False
 
-            if preorder(node.right):
-                return True
-
-            if preorder(node.left):
-                return True
-
-            return False
-
-        return preorder(root)
