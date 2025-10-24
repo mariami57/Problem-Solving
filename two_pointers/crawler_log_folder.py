@@ -17,18 +17,33 @@ from typing import List
 #
 #         return folder_depth
 
+#
+# class Solution:
+#     def minOperations(self, logs: List[str]) -> int:
+#         folder_depth = 0
+#
+#         for i in range(len(logs)):
+#             if logs[i] == '../':
+#                 folder_depth = max(0, folder_depth -1)
+#             elif logs[i] != './':
+#                 folder_depth += 1
+#
+#         return folder_depth
 
 class Solution:
     def minOperations(self, logs: List[str]) -> int:
-        folder_depth = 0
 
-        for i in range(len(logs)):
-            if logs[i] == '../':
-                folder_depth = max(0, folder_depth -1)
-            elif logs[i] != './':
-                folder_depth += 1
+        folder_stack = []
 
-        return folder_depth
+        for op in logs:
+            if op == '../':
+                if folder_stack:
+                    folder_stack.pop()
+            elif op != './':
+                folder_stack.append(op)
+
+
+        return len(folder_stack)
 
 
 print(Solution().minOperations(["./","../","./"]))
