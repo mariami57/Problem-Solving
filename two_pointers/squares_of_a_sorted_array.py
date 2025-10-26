@@ -35,5 +35,7 @@ class Solution:
 
         return result
 
+
+
 print(Solution().sortedSquares(nums = [-7,-3,2,3,11]))
 print(Solution().sortedSquares(nums = [-4,-1,0,3,10]))
