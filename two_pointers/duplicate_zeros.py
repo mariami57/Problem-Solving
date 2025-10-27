@@ -1,30 +1,23 @@
 from typing import List
 
 
-# class Solution:
-#     def duplicateZeros(self, arr: List[int]) -> None:
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
 #         """
 #         Do not return anything, modify arr in-place instead.
 #         """
-#         i = 0
-#         while i < len(arr)-1:
-#             if arr[i] == 0:
-#                 arr.insert(i,0)
-#                 arr.pop()
-#                 i+=1
-#             i+=1
-
-class Solution:
-    def duplicateZeros(self, arr: List[int]) -> None:
         zeroes = arr.count(0)
 
-        for i in range(len(arr) - 1, -1, -1):
-            if i + zeroes < len(arr):
-                arr[i+zeroes] = arr[i]
+        for i in range(len(arr) -1,-1,-1):
+            if i+zeroes < len(arr):
+                arr[i+zeroes] =arr[i]
             if arr[i] == 0:
                 zeroes -= 1
                 if i+zeroes < len(arr):
                     arr[i+zeroes] = 0
+
+
+
 
 
 
