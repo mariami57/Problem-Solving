@@ -25,7 +25,7 @@ class Solution:
                 zeroes -= 1
                 if i+zeroes < len(arr):
                     arr[i+zeroes] = 0
-        return arr
+
 
 
 
