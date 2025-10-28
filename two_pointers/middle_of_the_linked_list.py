@@ -8,11 +8,12 @@ from typing import Optional
 
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        slow_pointer = head
-        fast_pointer = head
+        i = head
+        j = head
 
-        while fast_pointer and fast_pointer.next:
-            slow_pointer = slow_pointer.next
-            fast_pointer = fast_pointer.next.next
+        while  j is not None and j.next is not None:
+            i = i.next
+            j = j.next.next
+        return i
 
-        return slow_pointer
+
