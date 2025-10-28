@@ -32,18 +32,16 @@ from typing import List
 
 class Solution:
     def minOperations(self, logs: List[str]) -> int:
+        ops = 0
+        for log in logs:
+            if log == './' or (log=='../' and ops == 0):
+                continue
+            elif log=='../' and ops > 0:
+                ops -= 1
+            else:
+                ops += 1
+        return ops
 
-        folder_stack = []
-
-        for op in logs:
-            if op == '../':
-                if folder_stack:
-                    folder_stack.pop()
-            elif op != './':
-                folder_stack.append(op)
-
-
-        return len(folder_stack)
-
-
+print(Solution().minOperations(logs = ["d1/","d2/","../","d21/","./"]))
 print(Solution().minOperations(["./","../","./"]))
+print(Solution().minOperations(logs = ["d1/","d2/","./","d3/","../","d31/"]))
