@@ -3,17 +3,16 @@ from typing import List
 
 class Solution:
     def calPoints(self, operations: List[str]) -> int:
-
-        stack = []
+        scores = []
         for op in operations:
             if op == '+':
-                stack.append(stack[-1] + stack[-2])
-            elif op == 'C':
-                stack.pop()
+                scores.append(scores[-1] + scores[-2])
             elif op == 'D':
-                stack.append(2*stack[-1])
+                scores.append(scores[-1]*2)
+            elif op == 'C':
+                scores.pop()
             else:
-                stack.append(int(op))
-        return sum(stack)
+                scores.append(int(op))
+        return sum(scores)
 
-print(Solution().calPoints(["5","2","C","D","+"]))
+print(Solution().calPoints(["5","-2","4","C","D","9","+","+"]))
