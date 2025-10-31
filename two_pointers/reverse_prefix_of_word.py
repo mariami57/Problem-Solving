@@ -16,7 +16,6 @@ class Solution:
         if ch not in word:
             return word
         else:
-            result = []
             word = list(word)
 
             for i in range(len(word)):
