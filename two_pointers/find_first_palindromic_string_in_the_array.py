@@ -1,10 +1,18 @@
 from typing import List
 
-
+#
+# class Solution:
+#     def firstPalindrome(self, words: List[str]) -> str:
+#         for w in words:
+#             if w == w[::-1]:
+#                 return w
+#         return ''
+#
 class Solution:
     def firstPalindrome(self, words: List[str]) -> str:
+
         for w in words:
-            if w == w[::-1]:
+            if all(w[i]==w[~i] for i in range(len(w)//2)):
                 return w
         return ''
 
