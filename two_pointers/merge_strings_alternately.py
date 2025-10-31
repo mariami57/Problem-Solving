@@ -9,10 +9,10 @@ class Solution:
             result.append(word2[i])
             i+=1
 
-        if len(word1) < len(word2):
-            result.append(word2[i:])
-        elif len(word1) > len(word2):
-            result.append(word1[i:])
+
+        result.append(word2[len(word1):])
+        result.append(word1[len(word2):])
+
 
         return ''.join(result)
 
