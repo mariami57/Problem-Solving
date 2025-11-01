@@ -6,7 +6,7 @@ class Solution:
         result = []
         for i in range(len(nums)):
                 for j in range(len(nums)):
-                        if nums[j] == key and  abs(i - j) <= k:
+                        if nums[j] == key and abs(i - j) <= k:
                             result.append(i)
                             break
 
