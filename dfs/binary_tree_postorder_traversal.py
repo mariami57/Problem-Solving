@@ -7,18 +7,37 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+# class Solution:
+#     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+#         result = []
+#
+#         def postorder(root):
+#             if not root:
+#                 return []
+#             postorder(root.left)
+#             postorder(root.right)
+#             result.append(root.val)
+#
+#             return result
+#
+#         return postorder(root)
+
+
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
+        res = []
 
-        def postorder(root):
-            if not root:
-                return []
-            postorder(root.left)
-            postorder(root.right)
-            result.append(root.val)
+        if not root:
+            return res
 
-            return result
+        s = [root]
 
-        return postorder(root)
+        while s:
+            node = s.pop()
+            res.append(node.val)
 
+            if node.left:
+                s.append(node.left)
+            if node.right:
+                s.append(node.right)
+        return res[::-1]
