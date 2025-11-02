@@ -7,18 +7,38 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+# class Solution:
+#     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+#
+#         result = []
+#         def preorder(root):
+#             if not root:
+#                 return []
+#
+#             result.append(root.val)
+#             preorder(root.left)
+#             preorder(root.right)
+#             return result
+#
+#         return preorder(root)
+
 class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
 
-        result = []
-        def preorder(root):
-            if not root:
-                return []
+        res = []
 
-            result.append(root.val)
-            preorder(root.left)
-            preorder(root.right)
-            return result
+        if not root:
+            return res
 
-        return preorder(root)
+        st = [root]
+
+        while st:
+            node = st.pop()
+            res.append(node.val)
+
+            if node.right:
+                st.append(node.right)
+            if node.left:
+                st.append(node.left)
+        return res
 
