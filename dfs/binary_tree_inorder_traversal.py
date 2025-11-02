@@ -38,3 +38,19 @@ class Solution:
             r.append(curr.val)
             curr = curr.right
         return r
+
+
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        s = []
+        r = []
+        curr = root
+
+        while s or curr:
+            while curr:
+                s.append(curr)
+                curr = curr.left
+            curr = s.pop()
+            r.append(curr.val)
+            curr = curr.right
+        return r
