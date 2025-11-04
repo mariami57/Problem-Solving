@@ -1,4 +1,5 @@
 # Definition for a binary tree node.
+from collections import deque
 from typing import Optional, List
 
 
@@ -26,31 +27,50 @@ class TreeNode:
         self.right = right
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        s = []
-        r = []
-        curr = root
+        if not root:
+            return []
 
-        while s or curr:
-            while curr:
-                s.append(curr)
-                curr = curr.left
-            curr = s.pop()
-            r.append(curr.val)
-            curr = curr.right
-        return r
+        result = []
+
+        def inorder(node,result):
+            if not node:
+                return
 
 
-class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        s = []
-        r = []
-        curr = root
+            inorder(node.left, result)
+            result.append(node.val)
+            inorder(node.right, result)
 
-        while s or curr:
-            while curr:
-                s.append(curr)
-                curr = curr.left
-            curr = s.pop()
-            r.append(curr.val)
-            curr = curr.right
-        return r
+
+
+        inorder(root, result)
+        return result
+
+
+def build_tree(values):
+    if not values:
+        return None
+
+    root = TreeNode(values[0])
+    queue = deque([root])
+    i = 1
+
+    while queue and i < len(values):
+        current = queue.popleft()
+
+        if i < len(values) and values[i] is not None:
+            current.left = TreeNode(values[i])
+            queue.append(current.left)
+        i += 1
+
+        if i <len(values) and values[i] is not None:
+            current.right = TreeNode(values[i])
+            queue.append(current.right)
+        i +=1
+    return root
+
+if __name__ =='__main__':
+    tree = build_tree([1,None,2,3])
+    tree1 = build_tree([1,2,3,4,5,None,8,None,None,6,7,9])
+    print(Solution().inorderTraversal(tree))
+    print(Solution().inorderTraversal(tree1))
