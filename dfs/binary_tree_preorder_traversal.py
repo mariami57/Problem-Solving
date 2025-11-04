@@ -8,57 +8,41 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-# class Solution:
-#     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-#
-#         result = []
-#         def preorder(root):
-#             if not root:
-#                 return []
-#
-#             result.append(root.val)
-#             preorder(root.left)
-#             preorder(root.right)
-#             return result
-#
-#         return preorder(root)
 
 # class Solution:
 #     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-#
-#         res = []
-#
 #         if not root:
-#             return res
+#             return []
 #
-#         st = [root]
+#         result = []
+#         def preorder(node):
+#             if not node:
+#                 return
 #
-#         while st:
-#             node = st.pop()
-#             res.append(node.val)
+#             result.append(node.val)
+#             preorder(node.left)
+#             preorder(node.right)
 #
-#             if node.right:
-#                 st.append(node.right)
-#             if node.left:
-#                 st.append(node.left)
-#         return res
+#         preorder(root)
+#         return result
 
 class Solution:
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
-            return []
+        s = [root]
+        res = []
 
-        result = []
-        def preorder(node):
-            if not node:
-                return
 
-            result.append(node.val)
-            preorder(node.left)
-            preorder(node.right)
+        while s:
+            node = s.pop()
+            res.append(node.val)
 
-        preorder(root)
-        return result
+            if node.right:
+                s.append(node.right)
+
+            if node.left:
+                s.append(node.left)
+        return res
+
 
 def build_tree(values):
     if not values:
@@ -83,7 +67,7 @@ def build_tree(values):
     return root
 
 if __name__ =='__main__':
-    tree = build_tree([1,None,2,3])
+    # tree = build_tree([1,None,2,3])
     tree1 = build_tree([1,2,3,4,5,None,8,None,None,6,7,9])
-    print(Solution().preorderTraversal(tree))
+    # print(Solution().preorderTraversal(tree))
     print(Solution().preorderTraversal(tree1))
