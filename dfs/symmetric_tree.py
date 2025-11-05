@@ -12,23 +12,17 @@ class TreeNode:
 
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        left, right = root.left, root.right
-
-        if not left and not right:
+        if not root:
             return True
-
-        if not left or not right:
-            return False
 
         queue = deque([(root.left, root.right)])
 
         while queue:
             l, r = queue.popleft()
-
-            if not l or not r:
-                return False
             if not l and not r:
                 continue
+            if not l or not r:
+                return False
             if l.val != r.val:
                 return False
 
