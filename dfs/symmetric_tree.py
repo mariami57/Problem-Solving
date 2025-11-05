@@ -10,8 +10,37 @@ class TreeNode:
         self.right = right
 
 
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        left, right = root.left, root.right
+
+        if not left and not right:
+            return True
+
+        if not left or not right:
+            return False
+
+        queue = deque([(root.left, root.right)])
+
+        while queue:
+            l, r = queue.popleft()
+
+            if not l or not r:
+                return False
+            if not l and not r:
+                continue
+            if l.val != r.val:
+                return False
+
+            queue.append((l.left, r.right))
+            queue.append((l.right, r.left))
+        return True
+
+
 # class Solution:
 #     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+#         if not root:
+#             return True
 #
 #         def is_mirror(n1, n2):
 #             if not n1 and not n2:
@@ -20,58 +49,16 @@ class TreeNode:
 #             if not n1 or not n2:
 #                 return False
 #
-#             return n1.val == n2.val and is_mirror(n1.left, n2.right) and is_mirror(n1.right, n2.left)
-#
+#             return(
+#                 n1.val == n2.val
+#                 and is_mirror(n1.left, n2.right)
+#                 and is_mirror(n1.right, n2.left)
+#             )
 #
 #         return is_mirror(root.left, root.right)
 
-# class Solution:
-#     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-#         left = root.left
-#         right = root.right
-#
-#         if not left and not right:
-#             return True
-#
-#         if (left and not right) or (not left and right):
-#             return False
-#
-#         queue = deque([(root.left, root.right)])
-#
-#         while queue:
-#             left, right = queue.popleft()
-#
-#             if not left and not right:
-#                 continue
-#             if not left or not right:
-#                 return False
-#             if left.val != right.val:
-#                 return False
-#
-#             queue.append((left.left, right.right))
-#             queue.append((left.right, right.left))
-#         return True
 
 
-class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
-
-        def is_mirror(n1, n2):
-            if not n1 and not n2:
-                return True
-
-            if not n1 or not n2:
-                return False
-
-            return(
-                n1.val == n2.val
-                and is_mirror(n1.left, n2.right)
-                and is_mirror(n1.right, n2.left)
-            )
-
-        return is_mirror(root.left, root.right)
 def build_tree(values):
     if not values:
         return None
@@ -90,6 +77,7 @@ def build_tree(values):
 
         if i <len(values) and values[i] is not None:
             current.right = TreeNode(values[i])
+
             queue.append(current.right)
         i +=1
     return root
