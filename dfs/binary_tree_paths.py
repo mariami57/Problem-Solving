@@ -7,29 +7,35 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
+
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-
         if not root:
             return []
-        res = []
 
-        def dfs(node, path):
+        paths = []
+
+        def find_path(node, path):
             if not node.left and not node.right:
-                res.append(path)
-                return
+                paths.append(path)
 
             if node.left:
-                dfs(node.left, path + '->' + str(node.left.val))
+                find_path(node.left, path + '->' + str(node.left.val))
 
             if node.right:
-                dfs(node.right, path + '->' + str(node.right.val))
+                find_path(node.right, path + '->' + str(node.right.val))
+
+        find_path(root, str(root.val))
+
+        return paths
 
 
-        dfs(root, str(root.val))
 
 
-        return res
+
+
 
 def build_tree(values):
     if not values:
