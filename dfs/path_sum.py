@@ -23,29 +23,42 @@ class TreeNode:
 
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+
         if not root:
             return False
-        node_sum  = []
 
-        def calc_sum(node):
-            if not node:
-              return False
+        if not root.left and not root.right and targetSum - root.val == 0:
+            return True
+        targetSum -= root.val
 
-            node_sum.append(node.val)
-
-            if not node.left and not node.right and sum(node_sum) == targetSum:
-                return True
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
 
 
-            left = calc_sum(node.left)
-            right = calc_sum(node.right)
-
-            node_sum.pop()
-
-            return left or right
-
-
-        return calc_sum(root)
+# class Solution:
+#     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+#         if not root:
+#             return False
+#         node_sum  = []
+#
+#         def calc_sum(node):
+#             if not node:
+#               return False
+#
+#             node_sum.append(node.val)
+#
+#             if not node.left and not node.right and sum(node_sum) == targetSum:
+#                 return True
+#
+#
+#             left = calc_sum(node.left)
+#             right = calc_sum(node.right)
+#
+#             node_sum.pop()
+#
+#             return left or right
+#
+#
+#         return calc_sum(root)
 
 
 
