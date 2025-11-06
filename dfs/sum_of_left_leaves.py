@@ -10,26 +10,40 @@ class TreeNode:
 from typing import Optional
 
 
+# class Solution:
+#     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+#         if not root or (not root.left and not root.right):
+#             return 0
+#
+#         def left_sum(node):
+#             if not node:
+#                 return 0
+#
+#             total = 0
+#
+#             if node.left and not node.left.left and not node.left.right:
+#                 total += node.left.val
+#
+#             total += left_sum(node.left)
+#             total += left_sum(node.right)
+#             return total
+#
+#         return left_sum(root)
+
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
-        if not root or (not root.left and not root.right):
+        if not root:
             return 0
 
-        def left_sum(node):
+        def dfs(node, is_left):
             if not node:
                 return 0
 
-            total = 0
+            if not node.left and not node.right:
+                return 0 if not is_left else node.val
+            return dfs(node.left, True) + dfs(node.right, False)
 
-            if node.left and not node.left.left and not node.left.right:
-                total += node.left.val
-
-            total += left_sum(node.left)
-            total += left_sum(node.right)
-            return total
-
-        return left_sum(root)
-
+        return dfs(root,False)
 
 def build_tree(values):
     if not values:
