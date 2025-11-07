@@ -10,29 +10,64 @@ class TreeNode:
 from typing import Optional, List
 
 
+# class Solution:
+#     def findMode(self, root: Optional[TreeNode]) -> List[int]:
+#         if not root:
+#             return []
+#
+#         counts = {}
+#         max_count = 0
+#         modes = []
+#
+#         def inorder(node):
+#             if not node:
+#                 return
+#
+#             inorder(node.left)
+#
+#             nonlocal max_count, modes
+#
+#             counts[node.val]  = 1 + counts.get(node.val, 0)
+#
+#             if counts[node.val] > max_count:
+#                 max_count = counts[node.val]
+#                 modes = [node.val]
+#             elif counts[node.val] == max_count:
+#                 modes.append(node.val)
+#
+#             inorder(node.right)
+#
+#         inorder(root)
+#         return modes
+
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
 
-        counts = {}
+        prev = None
+        count = 0
         max_count = 0
         modes = []
 
         def inorder(node):
+            nonlocal prev,count, max_count, modes
+
             if not node:
                 return
 
             inorder(node.left)
 
-            nonlocal max_count, modes
+            if node.val == prev:
+                count += 1
+            else:
+                count = 1
+                prev = node.val
 
-            counts[node.val]  = 1 + counts.get(node.val, 0)
-
-            if counts[node.val] > max_count:
-                max_count = counts[node.val]
+            if count > max_count:
+                max_count = count
                 modes = [node.val]
-            elif counts[node.val] == max_count:
+            elif count == max_count:
                 modes.append(node.val)
 
             inorder(node.right)
@@ -63,7 +98,7 @@ def build_tree(values):
     return root
 
 if __name__ =='__main__':
-    tree = build_tree([1,None,2,2])
     tree1 = build_tree([0])
+    tree = build_tree([1,None,2,2])
     print(Solution().findMode(tree))
     print(Solution().findMode(tree1))
