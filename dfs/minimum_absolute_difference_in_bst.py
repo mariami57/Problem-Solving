@@ -8,22 +8,26 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
-        self.prev = None
-        self.min_diff = float('inf')
 
-        def inorder(node):
+        self.prev = None
+        self.min_abs_diff = float('inf')
+
+        def min_diff(node):
             if not node:
                 return
-            inorder(node.left)
-            if self.prev is not None:
-                self.min_diff = min(self.min_diff, node.val - self.prev)
-            self.prev = node.val
-            inorder(node.right)
 
-        inorder(root)
-        return self.min_diff
+            min_diff(node.left)
+            if self.prev is not None:
+                self.min_abs_diff = min(self.min_abs_diff, abs(self.prev - node.val))
+            self.prev = node.val
+            min_diff(node.right)
+            return self.min_abs_diff
+        min_diff(root)
+        return self.min_abs_diff
+
 
 def build_tree(values):
     if not values:
