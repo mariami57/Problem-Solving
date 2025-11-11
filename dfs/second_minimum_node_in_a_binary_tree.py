@@ -9,31 +9,6 @@ class TreeNode:
         self.right = right
 from typing import Optional
 
-
-# class Solution:
-#     def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
-#         if not root or not root.left:
-#             return -1
-#
-#         left, right = root.left, root.right
-#
-#         if left.val == root.val:
-#             left_second = self.findSecondMinimumValue(left)
-#         else:
-#             left_second = left.val
-#
-#         if right.val == root.val:
-#             right_second = self.findSecondMinimumValue(right)
-#         else:
-#             right_second = right.val
-#
-#         if left_second != -1 and right_second != -1:
-#             return min(left_second, right_second)
-#         elif left_second != -1:
-#             return left_second
-#         else:
-#             return right_second
-
 class Solution:
     def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
         if not root or not root.left:
