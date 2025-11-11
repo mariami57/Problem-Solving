@@ -9,7 +9,6 @@ class TreeNode:
         self.right = right
 from typing import Optional
 
-
 class Solution:
     def findTilt(self, root: Optional[TreeNode]) -> int:
 
@@ -17,17 +16,16 @@ class Solution:
             return 0
 
         self.node_sum = 0
-
         def find_sum(node):
             if not node:
                 return 0
 
             left = find_sum(node.left)
             right = find_sum(node.right)
+
             self.node_sum += abs(left - right)
 
             return left + right + node.val
-
 
         find_sum(root)
         return self.node_sum
