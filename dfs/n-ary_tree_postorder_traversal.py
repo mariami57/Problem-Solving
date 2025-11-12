@@ -1,0 +1,28 @@
+"""
+# Definition for a Node.
+
+"""
+from typing import Optional, List
+
+
+class Node:
+    def __init__(self, val: Optional[int] = None, children: Optional[List['Node']] = None):
+        self.val = val
+        self.children = children
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return []
+
+        res = []
+        def dfs(node):
+            if not node:
+                return
+            for child in node.children:
+                dfs(child)
+                res.append(child.val)
+
+        dfs(root)
+        return res + [root.val]
+
