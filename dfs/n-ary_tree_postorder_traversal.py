@@ -21,8 +21,23 @@ class Solution:
                 return
             for child in node.children:
                 dfs(child)
-                res.append(child.val)
+            res.append(node.val)
 
         dfs(root)
-        return res + [root.val]
+        return res
 
+# class Solution:
+#     def postorder(self, root: 'Node') -> List[int]:
+#         if not root:
+#             return []
+#
+#         res = []
+#         def dfs(node):
+#             if not node:
+#                 return
+#             for child in node.children:
+#                 dfs(child)
+#                 res.append(child.val)
+#
+#         dfs(root)
+#         return res + [root.val]
