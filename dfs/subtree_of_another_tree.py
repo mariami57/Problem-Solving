@@ -11,13 +11,13 @@ class TreeNode:
 class Solution:
 
     def is_same_tree(self, node, subnode):
-        if not node and not subnode:
+        if node is None and subnode is None:
             return True
 
-        if not node or not subnode:
+        if node is None or subnode is None:
             return False
 
-        if node.val != node.val:
+        if node.val != subnode.val:
             return False
 
         return (self.is_same_tree(node.left, subnode.left) and
@@ -79,9 +79,9 @@ def build_subtree(values):
     return root
 
 if __name__ == '__main__':
-    tree1 = build_tree([3,4,5,1,2,None,None,None,None,0])
-    subtree1 = build_subtree([4,1,2])
+    tree1 = build_tree([1])
+    subtree1 = build_subtree([0])
     tree = build_tree([3,4,5,1,2])
     subtree = build_subtree([4,1,2])
     print(Solution().isSubtree(tree, subtree))
-    print(Solution().isSubtree(tree1, subtree1))
+    # print(Solution().isSubtree(tree1, subtree1))
