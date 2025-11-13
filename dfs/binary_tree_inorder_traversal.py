@@ -25,31 +25,30 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 # class Solution:
 #     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
 #         if not root:
 #             return []
 #
-#         result = []
-#
-#         def inorder(node,result):
+#         res = []
+#         def inorder(node):
 #             if not node:
 #                 return
 #
+#             inorder(node.left)
+#             res.append(node.val)
+#             inorder(node.right)
+#             return res
 #
-#             inorder(node.left, result)
-#             result.append(node.val)
-#             inorder(node.right, result)
-#
-#
-#
-#         inorder(root, result)
-#         return result
+#         inorder(root)
+#         return res
 
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
+
         s = []
         res = []
         curr = root
@@ -58,10 +57,12 @@ class Solution:
             while curr:
                 s.append(curr)
                 curr = curr.left
-            curr= s.pop()
+            curr = s.pop()
             res.append(curr.val)
             curr = curr.right
         return res
+
+
 
 def build_tree(values):
     if not values:
@@ -86,7 +87,7 @@ def build_tree(values):
     return root
 
 if __name__ =='__main__':
-    # tree = build_tree([1,None,2,3])
+    tree = build_tree([1,None,2,3])
     tree1 = build_tree([1,2,3,4,5,None,8,None,None,6,7,9])
-    # print(Solution().inorderTraversal(tree))
+    print(Solution().inorderTraversal(tree))
     print(Solution().inorderTraversal(tree1))
