@@ -9,18 +9,6 @@ class TreeNode:
         self.left = left
         self.right = right
 
-class Solution:
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-
-        if not root:
-            return False
-
-        if not root.left and not root.right and targetSum - root.val == 0:
-            return True
-        targetSum -= root.val
-
-        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
-
 
 # class Solution:
 #     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
@@ -47,6 +35,18 @@ class Solution:
 #
 #
 #         return calc_sum(root)
+
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+
+        if not root.left and not root.right and targetSum - root.val == 0:
+            return True
+        targetSum -= root.val
+
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
+
 
 
 
