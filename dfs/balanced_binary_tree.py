@@ -9,21 +9,20 @@ class TreeNode:
         self.right = right
 from typing import Optional
 
-
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-
         def dfs(node):
             if not node:
                 return True
+
             left = dfs(node.left)
             right = dfs(node.right)
 
             if left == -1 or right == -1 or abs(left - right) > 1:
                 return -1
-            return 1 + max(left,right)
-        return dfs(root) != -1
+            return 1 + max(left, right)
 
+        return dfs(root) != -1
 
 
 def build_tree(values):
