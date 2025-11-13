@@ -20,43 +20,41 @@ class TreeNode:
 #             return 1 + min(left_depth, right_depth)
 #         return 1 + max(left_depth, right_depth)
 
-class Solution:
-    def minDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
-
-        current_depth = 1
-        queue = [root]
-
-        while queue:
-            for _ in range(len(queue)):
-                node = queue.pop(0)
-
-                if not node.left and not node.right:
-                    return current_depth
-
-                if node.left:
-                    queue.append(node.left)
-
-                if node.right:
-                    queue.append(node.right)
-            current_depth += 1
-        return current_depth
-
 # class Solution:
 #     def minDepth(self, root: Optional[TreeNode]) -> int:
 #         if not root:
 #             return 0
 #
-#         left_depth = self.minDepth(root.left)
-#         right_depth = self.minDepth(root.right)
+#         current_depth = 1
+#         queue = [root]
 #
-#         if left_depth != 0 and right_depth != 0:
-#             return 1 + min(left_depth, right_depth)
+#         while queue:
+#             for _ in range(len(queue)):
+#                 node = queue.pop(0)
 #
-#         return 1 + max(left_depth, right_depth)
+#                 if not node.left and not node.right:
+#                     return current_depth
+#
+#                 if node.left:
+#                     queue.append(node.left)
+#
+#                 if node.right:
+#                     queue.append(node.right)
+#             current_depth += 1
+#         return current_depth
 
 
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
+        left = self.minDepth(root.left)
+        right = self.minDepth(root.right)
+
+        if 1 + min(left, right) == 1:
+            return 1 + max(left,right)
+        return 1 + min(left,right)
 
 
 
