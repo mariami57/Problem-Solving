@@ -10,27 +10,6 @@ class TreeNode:
 
 
 
-# class Solution:
-#     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-#         if not root:
-#             return []
-#
-#         paths = []
-#
-#         def find_path(node, path):
-#             if not node.left and not node.right:
-#                 paths.append(path)
-#
-#             if node.left:
-#                 find_path(node.left, path + '->' + str(node.left.val))
-#
-#             if node.right:
-#                 find_path(node.right, path + '->' + str(node.right.val))
-#
-#         find_path(root, str(root.val))
-#
-#         return paths
-
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         if not root:

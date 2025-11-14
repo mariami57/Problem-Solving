@@ -30,20 +30,38 @@ from typing import Optional
 #
 #         return left_sum(root)
 
+# class Solution:
+#     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+#         if not root:
+#             return 0
+#
+#         def dfs(node, is_left):
+#             if not node:
+#                 return 0
+#
+#             if not node.left and not node.right:
+#                 return 0 if not is_left else node.val
+#             return dfs(node.left, True) + dfs(node.right, False)
+#
+#         return dfs(root,False)
+
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-
-        def dfs(node, is_left):
+        self.sum_leaves = 0
+        def find_sum(node):
             if not node:
-                return 0
-
-            if not node.left and not node.right:
-                return 0 if not is_left else node.val
-            return dfs(node.left, True) + dfs(node.right, False)
-
-        return dfs(root,False)
+                return
+            if node.left:
+                left = node.left
+                if not left.left and not left.right:
+                    self.sum_leaves += left.val
+            find_sum(node.left)
+            find_sum(node.right)
+            return self.sum_leaves
+        find_sum(root)
+        return self.sum_leaves
 
 def build_tree(values):
     if not values:
