@@ -39,41 +39,41 @@ from typing import Optional, List
 #
 #         inorder(root)
 #         return modes
+#
+
 
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
 
-        prev = None
-        count = 0
-        max_count = 0
-        modes = []
+        self.prev = None
+        self.modes = []
+        self.max_count = 0
+        self.count  = 0
 
         def inorder(node):
-            nonlocal prev,count, max_count, modes
-
             if not node:
                 return
 
             inorder(node.left)
-
-            if node.val == prev:
-                count += 1
+            if node.val == self.prev:
+                self.count += 1
             else:
-                count = 1
-                prev = node.val
+                self.count = 1
+                self.prev = node.val
 
-            if count > max_count:
-                max_count = count
-                modes = [node.val]
-            elif count == max_count:
-                modes.append(node.val)
+            if self.count > self.max_count:
+                self.max_count = self.count
+                self.modes = [node.val]
+            elif self.count == self.max_count:
+                self.modes.append(node.val)
 
             inorder(node.right)
 
         inorder(root)
-        return modes
+        return self.modes
+
 
 def build_tree(values):
     if not values:
