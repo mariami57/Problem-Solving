@@ -9,24 +9,48 @@ class TreeNode:
         self.left = left
         self.right = right
 
+# class Solution:
+#     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
+#
+#         self.prev = None
+#         self.min_abs_diff = float('inf')
+#
+#         def min_diff(node):
+#             if not node:
+#                 return
+#
+#             min_diff(node.left)
+#             if self.prev is not None:
+#                 self.min_abs_diff = min(self.min_abs_diff, abs(self.prev - node.val))
+#             self.prev = node.val
+#             min_diff(node.right)
+#             return self.min_abs_diff
+#         min_diff(root)
+#         return self.min_abs_diff
+
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
 
+        self.min_diff = float('inf')
         self.prev = None
-        self.min_abs_diff = float('inf')
 
         def min_diff(node):
             if not node:
                 return
-
             min_diff(node.left)
-            if self.prev is not None:
-                self.min_abs_diff = min(self.min_abs_diff, abs(self.prev - node.val))
+            if self.prev is not None and abs(node.val - self.prev) < self.min_diff:
+                self.min_diff = abs(node.val - self.prev)
             self.prev = node.val
             min_diff(node.right)
-            return self.min_abs_diff
+            return self.min_diff
+
+
         min_diff(root)
-        return self.min_abs_diff
+        return self.min_diff
+
+
 
 
 def build_tree(values):
@@ -52,7 +76,7 @@ def build_tree(values):
     return root
 
 if __name__ == '__main__':
-    tree = build_tree([236,104,701,None,227,None,911])
+    tree = build_tree([4,2,6,1,3])
     tree1 = build_tree([1,0,48,None,None,12,49])
     print(Solution().getMinimumDifference(tree))
     print(Solution().getMinimumDifference(tree1))
