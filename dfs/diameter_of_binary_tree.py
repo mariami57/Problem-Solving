@@ -31,7 +31,6 @@ class Solution:
         return self.diameter
 
 
-
 def build_tree(values):
     if not values:
         return None
