@@ -11,42 +11,37 @@ class TreeNode:
 
 # class Solution:
 #     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-#
 #         if not root:
 #             return []
-#
-#         result = []
-#         def post_order(node):
+#         res = []
+#         def postorder(node):
 #             if not node:
 #                 return
 #
-#             post_order(node.left)
-#             post_order(node.right)
-#             result.append(node.val)
+#             postorder(node.left)
+#             postorder(node.right)
+#             res.append(node.val)
 #
-#         post_order(root)
-#
-#         return result
+#             return res
+#         postorder(root)
+#         return res
 
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
 
-        res = []
-        s = [root]
+        s, res = [root], []
+
 
         while s:
-            node = s.pop()
-            res.append(node.val)
-
-            if node.left:
-                s.append(node.left)
-
-            if node.right:
-                s.append(node.right)
+            curr = s.pop()
+            res.append(curr.val)
+            if curr.left:
+                s.append(curr.left)
+            if curr.right:
+                s.append(curr.right)
         return res[::-1]
-
 
 def build_tree(values):
     if not values:
