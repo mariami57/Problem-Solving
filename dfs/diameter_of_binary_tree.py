@@ -9,9 +9,11 @@ class TreeNode:
         self.right = right
 from typing import Optional
 
-
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+
         self.diameter = 0
 
         def dfs(node):
@@ -23,10 +25,11 @@ class Solution:
 
             self.diameter = max(self.diameter, left + right)
 
-            return 1 + max(left, right)
+            return 1 + max(left,right)
 
         dfs(root)
         return self.diameter
+
 
 
 def build_tree(values):
