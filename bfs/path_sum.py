@@ -8,6 +8,7 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+        
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if not root:
@@ -26,6 +27,9 @@ class Solution:
             if node.right:
                 queue.append((node.right, curr_sum - node.right.val))
         return False
+
+
+
 
 def build_tree(values):
     if not values:
