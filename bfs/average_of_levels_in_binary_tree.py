@@ -8,33 +8,55 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+# class Solution:
+#     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+#         if not root:
+#             return []
+#
+#         q = deque([root])
+#         p = deque([root])
+#         res = []
+#         while q:
+#             if p:
+#                 p_len = len(p)
+#                 avg = sum(n.val for n in p) / p_len
+#                 res.append(avg)
+#             p = deque([])
+#
+#             for _ in range(len(q)):
+#                 curr = q.popleft()
+#
+#                 if curr.left:
+#                     q.append(curr.left)
+#                     p.append(curr.left)
+#
+#                 if curr.right:
+#                     q.append(curr.right)
+#                     p.append(curr.right)
+#         return res
+
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         if not root:
             return []
-
-        q = deque([root])
-        p = deque([root])
         res = []
-        while q:
-            if p:
-                p_len = len(p)
-                avg = sum(n.val for n in p) / p_len
-                res.append(avg)
-            p = deque([])
+        queue = deque([root])
 
-            for _ in range(len(q)):
-                curr = q.popleft()
+        while queue:
+            level_sum = 0
+            len_q = len(queue)
 
-                if curr.left:
-                    q.append(curr.left)
-                    p.append(curr.left)
+            for _ in range(len_q):
+                node = queue.popleft()
+                level_sum += node.val
 
-                if curr.right:
-                    q.append(curr.right)
-                    p.append(curr.right)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+            res.append(level_sum / len_q)
         return res
-
 
 def build_tree(values):
     if not values:
