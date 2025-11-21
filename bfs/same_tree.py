@@ -8,31 +8,59 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+# class Solution:
+#     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+#         if p is None and q is None:
+#             return True
+#
+#         if p is None or q is None:
+#             return False
+#
+#         queue = deque()
+#         queue.append((p,q))
+#
+#         while queue:
+#             node1, node2 = queue.popleft()
+#
+#             if not node1 and not node2:
+#                 continue
+#             if not node1 or not node2:
+#                 return False
+#             if node1.val != node2.val:
+#                 return False
+#
+#             queue.append((node1.left, node2.left))
+#             queue.append((node1.right, node2.right))
+#         return True
+
+
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        if p is None and q is None:
+
+        if not p and not q:
             return True
 
-        if p is None or q is None:
+        if not p or not q:
             return False
 
-        queue = deque()
-        queue.append((p,q))
+        queue = deque([(p, q)])
 
         while queue:
-            node1, node2 = queue.popleft()
+            np, nq = queue.popleft()
 
-            if not node1 and not node2:
-                continue
-            if not node1 or not node2:
-                return False
-            if node1.val != node2.val:
+            if np.val != nq.val:
                 return False
 
-            queue.append((node1.left, node2.left))
-            queue.append((node1.right, node2.right))
+            if np.left and nq.left:
+                queue.append((np.left, nq.left))
+            elif np.left or nq.left:
+                return False
+
+            if np.right and nq.right:
+                queue.append((np.right, nq.right))
+            elif np.right or nq.right:
+                return False
         return True
-
 
 def build_tree(values):
     if not values:
