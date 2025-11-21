@@ -8,16 +8,17 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
+
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if not root:
             return True
 
-        queue = deque()
-        queue.append((root.left, root.right))
+        q = deque([(root.left, root.right)])
 
-        while queue:
-            node1, node2 = queue.popleft()
+        while q:
+            node1, node2 = q.popleft()
 
             if not node1 and not node2:
                 continue
@@ -28,8 +29,7 @@ class Solution:
             if node1.val != node2.val:
                 return False
 
-            queue.append((node1.left, node2.right))
-            queue.append((node1.right, node2.left))
+            q.append((node1.left, node2.right))
+            q.append((node1.right, node2.left))
 
         return True
-
