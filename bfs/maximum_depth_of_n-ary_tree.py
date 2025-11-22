@@ -11,24 +11,24 @@ class Node:
         self.val = val
         self.children = children
 
+
 class Solution:
     def maxDepth(self, root: 'Node') -> int:
         if not root:
             return 0
 
-        max_depth = 0
-
         q = deque([root])
-
+        depth = 0
         while q:
-            level_size = len(q)
-            max_depth += 1
+            depth += 1
+            q_len = len(q)
 
-            for _ in range(level_size):
+            for _ in range(len(q)):
                 node = q.popleft()
 
                 for child in node.children:
                     q.append(child)
+        return depth
 
-        return max_depth
+
 
