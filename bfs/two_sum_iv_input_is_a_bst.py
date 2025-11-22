@@ -14,23 +14,22 @@ class Solution:
         if not root:
             return False
 
-        queue = deque([root])
+        q = deque([root])
         diffs = set()
 
-        while queue:
-            node = queue.popleft()
+        while q:
+            node = q.popleft()
 
             if node.val in diffs:
-                return True
-            diffs.add(k - node.val)
+                    return True
+            diffs.add(k-node.val)
 
             if node.left:
-                queue.append(node.left)
+                q.append(node.left)
+
             if node.right:
-                queue.append(node.right)
+                q.append(node.right)
         return False
-
-
 
 def build_tree(values):
     if not values:
