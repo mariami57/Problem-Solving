@@ -8,25 +8,26 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
 
-        q = deque()
-        q.append(root)
+        q = deque([root])
         left_sum = 0
 
         while q:
-            curr = q.popleft()
+            node = q.popleft()
 
-            if curr.left:
-                if not curr.left.left and not curr.left.right:
-                    left_sum += curr.left.val
-                q.append(curr.left)
+            if node.left:
+                if not node.left.left and not node.left.right:
+                    left_sum += node.left.val
+                q.append(node.left)
 
-            if curr.right:
-                q.append(curr.right)
+            if node.right:
+                q.append(node.right)
+
         return left_sum
 
 def build_tree(values):
@@ -52,7 +53,7 @@ def build_tree(values):
     return root
 
 if __name__ =='__main__':
-    tree = build_tree([1,2,3,4,5])
+    tree = build_tree([3,9,20,None,None,15,7])
     tree1 = build_tree([1])
     print(Solution().sumOfLeftLeaves(tree))
     print(Solution().sumOfLeftLeaves(tree1))
