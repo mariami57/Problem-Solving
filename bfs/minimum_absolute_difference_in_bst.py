@@ -8,24 +8,27 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 class Solution:
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
 
         vals = []
-        q = deque()
-        q.append(root)
+        q = deque([root])
 
         while q:
             node = q.popleft()
             vals.append(node.val)
+
             if node.left:
                 q.append(node.left)
+
             if node.right:
                 q.append(node.right)
 
         vals.sort()
+
         return min(vals[i+1] - vals[i] for i in range(len(vals)-1))
 
 
