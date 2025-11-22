@@ -18,27 +18,29 @@ class Solution:
         if not root2:
             return root1
 
-        queue = deque([(root1, root2)])
+        q = deque([(root1, root2)])
 
-        while queue:
-            c1, c2 = queue.popleft()
+        while q:
+            n1, n2 = q.popleft()
 
-            if not c1 or not c2:
+            if not n1 or not n2:
                 continue
 
-            c1.val = c1.val + c2.val
 
-            if not c1.left:
-                c1.left = c2.left
-            else:
-                queue.append((c1.left, c2.left))
+            n1.val = n1.val + n2.val
 
-            if not c1.right:
-                c1.right = c2.right
+
+            if not n1.left:
+                n1.left = n2.left
             else:
-                queue.append((c1.right, c2.right))
+                q.append((n1.left, n2.left))
+
+            if not n1.right:
+                n1.right = n2.right
+            else:
+                q.append((n1.right, n2.right))
+
         return root1
-
 
 
 

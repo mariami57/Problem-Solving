@@ -23,7 +23,7 @@ class Solution:
             depth += 1
             q_len = len(q)
 
-            for _ in range(len(q)):
+            for _ in range(q_len):
                 node = q.popleft()
 
                 for child in node.children:
