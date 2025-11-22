@@ -10,19 +10,19 @@ class Solution:
 
         rows = len(image)
         cols = len(image[0])
-        q = deque([(sr,sc)])
         image[sr][sc] = color
+
+        q = deque([(sr,sc)])
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
         while q:
             r,c = q.popleft()
 
-            for dr,dc in directions:
-                nr,nc = r+dr, c+dc
-                if 0 <= nr < rows and 0 <= nc < cols and image[nr][nc] == start:
+            for dr, dc in directions:
+                nr,nc = dr + r, dc + c
+                if 0 <= nr < rows and 0 <= nc < cols and image[nr][nc]==start:
                     image[nr][nc] = color
-                    q.append((nr,nc))
-
+                    q.append((nr, nc))
         return image
 
 print(Solution().floodFill(image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2))
