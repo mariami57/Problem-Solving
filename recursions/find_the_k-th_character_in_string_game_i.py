@@ -16,21 +16,21 @@
 
 class Solution:
     def kthCharacter(self, k: int) -> str:
+
         def helper(k):
             if k == 1:
                 return 'a'
+
             length = 1
 
-            while 2 * length < k:
-                length *=2
+            while length * 2 < k:
+                length *= 2
 
-            if k == length or k <= length:
+            if k <= length:
                 return helper(k)
 
-            return chr(ord(helper(k - length)) + 1)
-
+            return chr(ord(helper(k-length)) + 1)
         return helper(k)
-
 
 
 print(Solution().kthCharacter(10))
