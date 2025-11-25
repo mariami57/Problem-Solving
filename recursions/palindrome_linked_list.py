@@ -8,21 +8,40 @@ class ListNode:
         self.next = next
 
 
+# class Solution:
+#     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+#
+#         self.left = ListNode(0, head)
+#
+#         def helper(head):
+#             if not head:
+#                 return True
+#
+#             right = helper(head.next)
+#             self.left = self.left.next
+#
+#             return right and self.left.val == head.val
+#         return helper(head)
+
+
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        self.front = head
 
-        self.left = ListNode(0, head)
-
-        def helper(head):
-            if not head:
+        def recurse(back):
+            if back is None:
                 return True
 
-            right = helper(head.next)
-            self.left = self.left.next
+            if not recurse(back.next):
+                return False
 
-            return right and self.left.val == head.val
-        return helper(head)
+            if back.val != self.front.val:
+                return False
 
+            self.front = self.front.next
+
+            return True
+        return recurse(head)
 
 def build_list(values):
     dummy = ListNode()
