@@ -8,16 +8,19 @@ class ListNode:
         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
         if not head or not head.next:
             return head
 
-        head.next = self.deleteDuplicates(head.next)
+        cur_val = head.val
 
-
-        if head.val == head.next.val:
-            head = head.next
-
-        return head
+        if head.next.val == cur_val:
+            while head and head.val == cur_val:
+                head = head.next
+            return self.deleteDuplicates(head)
+        else:
+            head.next = self.deleteDuplicates(head.next)
+            return head
 
 
 
@@ -39,6 +42,6 @@ def linked_list_to_list(head):
     return result
 
 # Example test
-head = build_list([1,2,3,3,4,4,5])
+head = build_list([1,1,1,2,3])
 solution = Solution()
 print(linked_list_to_list(solution.deleteDuplicates(head)))
