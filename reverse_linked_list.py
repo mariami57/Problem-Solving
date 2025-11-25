@@ -6,17 +6,30 @@ class ListNode:
 from typing import Optional
 
 
+# class Solution:
+#     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         node = None
+#
+#         while head:
+#             temp = head.next
+#             head.next = node
+#             node = head
+#             head = temp
+#
+#         return node
+
+
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        node = None
+        if head is None or head.next is None:
+            return head
 
-        while head:
-            temp = head.next
-            head.next = node
-            node = head
-            head = temp
-            
-        return node
+        next_head = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+
+        return next_head
+
 def build_linked_list(values):
     if not values:
         return None
