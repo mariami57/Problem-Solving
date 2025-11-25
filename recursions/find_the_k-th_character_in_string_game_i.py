@@ -14,8 +14,10 @@
 #             return recurse(new_word)
 #     return recurse('a')
 
+
 class Solution:
     def kthCharacter(self, k: int) -> str:
+
 
         def helper(k):
             if k == 1:
@@ -29,7 +31,7 @@ class Solution:
             if k <= length:
                 return helper(k)
 
-            return chr(ord(helper(k-length)) + 1)
+            return chr(ord(helper(k - length)) + 1)
         return helper(k)
 
 
