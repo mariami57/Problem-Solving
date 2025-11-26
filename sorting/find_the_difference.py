@@ -1,17 +1,30 @@
+# class Solution:
+#     def findTheDifference(self, s: str, t: str) -> str:
+#         t_counts = {}
+#         s_counts = {}
+#
+#         for char in t:
+#             t_counts[char] = t.count(char)
+#         for char in s:
+#             s_counts[char] = s.count(char)
+#
+#         for k in t_counts.keys():
+#             if k not in s_counts or t_counts[k] != s_counts[k]:
+#                 return k
+
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
         t_counts = {}
-        s_counts = {}
 
         for char in t:
-            t_counts[char] = t.count(char)
+                t_counts[char] = t.count(char)
+
         for char in s:
-            s_counts[char] = s.count(char)
+            t_counts[char] -= 1
+            if t_counts[char] == 0:
+                del t_counts[char]
 
-        for k in t_counts.keys():
-            if k not in s_counts or t_counts[k] != s_counts[k]:
-                return k
-
+        return list(t_counts.keys())[0]
 
 
 
