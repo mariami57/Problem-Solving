@@ -21,17 +21,26 @@ from typing import List
 #             j += 1
 #         return perimeter
 
+# class Solution:
+#     def largestPerimeter(self, nums: List[int]) -> int:
+#         if len(nums) < 3:
+#             return 0
+#         nums.sort()
+#         perimeter = 0
+#
+#         for i in range(len(nums)-1, 1, -1):
+#             if nums[i] < nums[i-1] + nums[i-2]:
+#                 perimeter = max(perimeter,nums[i] + nums[i-1] + nums[i-2])
+#         return perimeter
+
 class Solution:
     def largestPerimeter(self, nums: List[int]) -> int:
-        if len(nums) < 3:
-            return 0
-        nums.sort()
-        perimeter = 0
+        nums.sort(reverse=True)
 
-        for i in range(len(nums)-1, 1, -1):
-            if nums[i] < nums[i-1] + nums[i-2]:
-                perimeter = max(perimeter,nums[i] + nums[i-1] + nums[i-2])
-        return perimeter
+        for i in range(len(nums)-2):
+            if nums[i] < nums[i+1] + nums[i+2]:
+                return nums[i] + nums[i+1] + nums[i+2]
+        return 0
 
 print(Solution().largestPerimeter([1,2,2,4,18,8]))
 print(Solution().largestPerimeter([1,2,1,10]))
