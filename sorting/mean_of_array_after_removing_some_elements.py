@@ -1,16 +1,23 @@
 from typing import List
 
 
+# class Solution:
+#     def trimMean(self, arr: List[int]) -> float:
+#         arr.sort()
+#
+#         n_el_to_remove = int(len(arr) * 0.05)
+#         new_len = len(arr) - n_el_to_remove
+#
+#         arr = arr[n_el_to_remove:new_len]
+#
+#         return sum(arr) / len(arr)
+
 class Solution:
     def trimMean(self, arr: List[int]) -> float:
         arr.sort()
 
-        n_el_to_remove = int(len(arr) * 0.05)
-        new_len = len(arr) - n_el_to_remove
-
-        arr = arr[n_el_to_remove:new_len]
-
-        return sum(arr) / len(arr)
+        trimmed = arr[len(arr) // 20 : -len(arr) // 20]
+        return sum(trimmed) / len(trimmed)
 
 print(Solution().trimMean([1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3]))
 print(Solution().trimMean([6,2,7,5,1,2,0,3,10,2,5,0,5,5,0,8,7,6,8,0]))
