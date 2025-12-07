@@ -10,7 +10,7 @@ class Solution:
         return result
 
 
-print(Solution().convertToTitle(28))
+print(Solution().convertToTitle(701))
 print(Solution().convertToTitle(26))
 
 
