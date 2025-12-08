@@ -1,7 +1,6 @@
 class Solution:
     def countDigits(self, num: int) -> int:
         count = 0
-        visited = set()
         num_copy = num
 
         while num_copy > 0:
