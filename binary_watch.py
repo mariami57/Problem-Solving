@@ -14,4 +14,5 @@ class Solution:
                     times.append(f"{h}:{m:02d}")
         return times
 
+
 print(Solution().readBinaryWatch(1))
