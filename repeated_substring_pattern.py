@@ -1,17 +1,23 @@
+# class Solution:
+#     def repeatedSubstringPattern(self, s: str) -> bool:
+#         start  = 0
+#         end = 0
+#         substring = ''
+#
+#         while len(substring) < len(s) // 2:
+#             substring = s[start:end+1]
+#             repetition = len(s) // len(substring)
+#             if substring * repetition == s:
+#                 return True
+#             end += 1
+#         return False
+
 class Solution:
     def repeatedSubstringPattern(self, s: str) -> bool:
-        start  = 0
-        end = 0
-        substring = ''
-
-        while len(substring) < len(s) // 2:
-            substring = s[start:end+1]
-            repetition = len(s) // len(substring)
-            if substring * repetition == s:
-                return True
-            end += 1
-        return False
-
+        if s in (s * 2)[1:-1]:
+            return True
+        else:
+            return False
 
 
 
