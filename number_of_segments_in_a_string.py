@@ -24,6 +24,9 @@ class Solution:
 
         return len(s)
 
+
+
+print(Solution().countSegments(s = ", , , ,        a, eaefa"))
 print(Solution().countSegments(s = "Of all the gin joints in all the towns in all the world,   "))
 print(Solution().countSegments(s = "                "))
 print(Solution().countSegments(s = "Hello, my name is John"))
