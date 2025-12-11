@@ -12,12 +12,13 @@
 #             end += 1
 #         return False
 
+
 class Solution:
     def repeatedSubstringPattern(self, s: str) -> bool:
-        if s in (s * 2)[1:-1]:
+        double_s = s * 2
+        if s in double_s[1:-1]:
             return True
-        else:
-            return False
+        return False
 
 
 
