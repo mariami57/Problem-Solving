@@ -19,5 +19,6 @@ class Solution:
 
         return num ^ mask
 
+
 print(Solution().findComplement(5))
 print(Solution().findComplement(1))
