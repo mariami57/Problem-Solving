@@ -15,9 +15,9 @@ class Solution:
     def findComplement(self, num: int) -> int:
         bit_length = num.bit_length()
 
-        dummy = (1 << bit_length) - 1
+        mask = (1 << bit_length) - 1
 
-        return num ^ dummy
+        return num ^ mask
 
 print(Solution().findComplement(5))
 print(Solution().findComplement(1))
