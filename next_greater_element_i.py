@@ -19,18 +19,18 @@ from typing import List
 #                     result.append(-1)
 #         return result
 
+
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        ng = defaultdict(lambda: -1)
-        st = []
+        result = []
+        ng = defaultdict(lambda:-1)
 
         for num in nums2:
-            while st and st[-1] < num:
-                ng[st.pop()] = num
-            st.append(num)
-
+            while result and result[-1] < num:
+                ng[result.pop()] = num
+            result.append(num)
         return [ng[num] for num in nums1]
 
-print(Solution().nextGreaterElement(nums1 = [2,1,3], nums2 = [2,3,1]))
 print(Solution().nextGreaterElement(nums1 = [4,1,2], nums2 = [1,3,4,2]))
+print(Solution().nextGreaterElement(nums1 = [2,1,3], nums2 = [2,3,1]))
 print(Solution().nextGreaterElement(nums1 = [2,4], nums2 = [1,2,3,4]))
