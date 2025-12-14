@@ -1,6 +1,6 @@
 class Solution:
     def convertToBase7(self, num: int) -> str:
-        res = ''
+        result = ''
 
         if num == 0:
             return '0'
@@ -9,14 +9,15 @@ class Solution:
 
         while n != 0:
             rem = n % 7
-            res += str(rem)
+            result += str(rem)
+
             n //= 7
 
         if num < 0:
-            return '-'+res[::-1]
+            return '-' + result[::-1]
         else:
-            return res[::-1]
+            return result[::-1]
 
-print(Solution().convertToBase7(-12))
+print(Solution().convertToBase7(-7))
 print(Solution().convertToBase7(100))
 
