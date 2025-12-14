@@ -10,6 +10,7 @@ class Solution:
         result += duration
         return result
 
+
 print(Solution().findPoisonedDuration(timeSeries = [1,4], duration = 2))
 print(Solution().findPoisonedDuration(timeSeries = [1,2], duration = 2))
 print(Solution().findPoisonedDuration(timeSeries = [1,2,3,4,5], duration = 5))
