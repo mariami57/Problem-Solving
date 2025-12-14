@@ -9,4 +9,5 @@ class Solution:
             w -= 1
         return [area // w, w]
 
+
 print(Solution().constructRectangle(37))
