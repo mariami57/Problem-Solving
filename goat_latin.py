@@ -3,11 +3,9 @@ class Solution:
         vowels = ['a', 'e', 'i', 'o', 'u']
         sentence = sentence.split()
         for i in range(len(sentence)):
-            if sentence[i][0].lower() in vowels:
-                sentence[i] += 'ma' + ('a' * (i+1))
-            elif sentence[i][0].lower() not in vowels:
-                sentence[i] = sentence[i][1:] + sentence[i][0] + 'ma' + ('a' * (i+1))
-
+            if sentence[i][0].lower() not in vowels:
+                sentence[i] = sentence[i][1:] + sentence[i][0]
+            sentence[i] += 'ma' + ('a' * (i+1))
         return ' '.join(sentence)
 
 print(Solution().toGoatLatin("I speak Goat Latin"))
