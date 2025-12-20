@@ -1,24 +1,35 @@
 from typing import List
 
+# class Solution:
+#     def projectionArea(self, grid: List[List[int]]) -> int:
+#         top = 0
+#         front = 0
+#         side = 0
+#
+#         row = len(grid)
+#         col = len(grid[0])
+#
+#         for r in range(row):
+#             front += max(grid[r])
+#
+#             for c in range(col):
+#                 if grid[r][c] > 0:
+#                     top += 1
+#
+#         for c in range(col):
+#             side += max(grid[r][c] for r in range(row))
+#         return top + front + side
+
+
 class Solution:
     def projectionArea(self, grid: List[List[int]]) -> int:
-        top = 0
-        front = 0
-        side = 0
+        n = len(grid)
 
-        row = len(grid)
-        col = len(grid[0])
+        x = sum(max(grid[i][j] for i in range(n)) for j in range(n))
+        y = sum(max(grid[j][i] for i in range(n)) for j in range(n))
+        z = sum(grid[i][j] > 0 for i in range(n) for j in range(n))
 
-        for r in range(row):
-            front += max(grid[r])
-
-            for c in range(col):
-                if grid[r][c] > 0:
-                    top += 1
-
-        for c in range(col):
-            side += max(grid[r][c] for r in range(row))
-        return top + front + side
+        return z+y+x
 
 print(Solution().projectionArea([[1,2],[3,4]]))
 print(Solution().projectionArea([[2]]))
